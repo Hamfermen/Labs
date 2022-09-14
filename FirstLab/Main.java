@@ -40,6 +40,7 @@ public class Main{
 				System.out.printf(" %.3f ", arr[i][j]);
 			}
 			System.out.println();
+			
 		}
 	}
 }
