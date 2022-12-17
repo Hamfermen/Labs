@@ -13,24 +13,6 @@ public abstract class Human{
     }
 
     public abstract String move(Room room);
-    
-    public void think() {
-    	final class TextGenerator {
-    		public TextGenerator() {}
-    		
-    		private String[] nouns = {"бревно","камин","еда","время года","дни","лампа","керосин","месяц","год","конец света","абсолютная пустота","комната"};
-    		private String[] adjectives = {"Длинный","Вкусная","Холодное","Счастливые","Керосиновая","Березовое","Страшный","Длинный","Тяжелый","Каменный","Загадочная","Наша"};
-    		private String[] verbs = {"горит","лежит","течёт","светит","идет","наступил","укатилось","прошёл","завершился","появится","существует"};
-    		
-    		private Random rn = new Random();
-    		
-    		public String generateText() {
-    			return adjectives[rn.nextInt(adjectives.length)] + " " + nouns[rn.nextInt(nouns.length)] + " " + verbs[rn.nextInt(verbs.length)];
-    		}
-    	}
-    	TextGenerator textGenerator = new TextGenerator();
-    	System.out.print("\"" + textGenerator.generateText() + "\" - ");
-    }
 
     public void eat(Room room) {
         int whatFood = rn.nextInt(room.getFoodList().size());
