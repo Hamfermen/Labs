@@ -30,4 +30,41 @@ public class BodyOfRoom {
 		List<Object> deepCopy = new ArrayList<>(container);
 		return deepCopy;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((container == null) ? 0 : container.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		BodyOfRoom other = (BodyOfRoom) obj;
+		if (container == null) {
+			if (other.container != null) {
+				return false;
+			}
+		} else if (!container.equals(other.container)) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "BodyOfRoom [container=" + container.toString() + "]";
+	}
+	
+	
 }
