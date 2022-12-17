@@ -12,7 +12,6 @@ public class Fireplace implements CanContainFire, DynamicObjects {
 	private double emptySpace;
 	private String material;
 	private LightCondition lightState = LightCondition.DARK;
-	private TemperatureCondition temperatureState = TemperatureCondition.COLD;
 	private double coefficientOfLayingFirewood;
 
 	public Fireplace(String material, double coefficientOfLayingFirewood, double size) {
@@ -63,8 +62,6 @@ public class Fireplace implements CanContainFire, DynamicObjects {
 			System.out.println("Камин горит");
 			if (lightState == LightCondition.DARK)
 				lightState = LightCondition.LIGHT;
-			if (temperatureState == TemperatureCondition.COLD)
-				temperatureState = TemperatureCondition.WARM;
 			for (int i = logsInFireplace.size() - 1; i >= 0; i--) {
 				if (!logsInFireplace.get(i).burn() && BurnCondition.AFTERBURN == logsInFireplace.get(i).getState()) {
 					logsAfterBurn.add(logsInFireplace.get(i));
@@ -77,8 +74,6 @@ public class Fireplace implements CanContainFire, DynamicObjects {
 		System.out.println("Камин не горит");
 		if (lightState == LightCondition.LIGHT)
 			lightState = LightCondition.DARK;
-		if (temperatureState == TemperatureCondition.WARM)
-			temperatureState = TemperatureCondition.COLD;
 		return false;
 	}
 
@@ -118,8 +113,7 @@ public class Fireplace implements CanContainFire, DynamicObjects {
 	public String toString() {
 		return "Fireplace [logs=" + logs + ", logsInFireplace=" + logsInFireplace + ", logsAfterBurn=" + logsAfterBurn
 				+ ", timeOfBurn=" + timeOfBurn + ", size=" + size + ", emptySpace=" + emptySpace + ", material="
-				+ material + ", lightState=" + lightState + ", temperatureState=" + temperatureState
-				+ ", coefficientOfLayingFirewood=" + coefficientOfLayingFirewood + "]";
+				+ material + ", lightState=" + lightState + ", coefficientOfLayingFirewood=" + coefficientOfLayingFirewood + "]";
 	}
 
 	@Override
@@ -138,7 +132,6 @@ public class Fireplace implements CanContainFire, DynamicObjects {
 		result = prime * result + ((material == null) ? 0 : material.hashCode());
 		temp = Double.doubleToLongBits(size);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((temperatureState == null) ? 0 : temperatureState.hashCode());
 		temp = Double.doubleToLongBits(timeOfBurn);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
@@ -196,9 +189,6 @@ public class Fireplace implements CanContainFire, DynamicObjects {
 			return false;
 		}
 		if (Double.doubleToLongBits(size) != Double.doubleToLongBits(other.size)) {
-			return false;
-		}
-		if (temperatureState != other.temperatureState) {
 			return false;
 		}
 		if (Double.doubleToLongBits(timeOfBurn) != Double.doubleToLongBits(other.timeOfBurn)) {
