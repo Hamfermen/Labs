@@ -59,10 +59,6 @@ public class Karlson extends Human {
     		case 4:
     			System.out.println(super.getName() + " подлетел к " + move(room));
     			break;
-    		case 5,6,7:
-    			super.think();
-    			System.out.println("подумал " + super.getName());
-    			break;
     		default:
     			System.out.println(super.getName() + " отдыхает");
     			break;
