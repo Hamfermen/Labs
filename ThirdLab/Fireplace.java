@@ -12,7 +12,6 @@ public class Fireplace implements CanContainFire, DynamicObjects{
     private double emptySpace;
     private String material;
     private LightCondition lightState = LightCondition.DARK;
-    private TemperatureCondition temperatureState = TemperatureCondition.COLD;
     private double coefficientOfLayingFirewood;
     
     public Fireplace(String material, double coefficientOfLayingFirewood, double size) {
@@ -61,7 +60,6 @@ public class Fireplace implements CanContainFire, DynamicObjects{
 		if (logsInFireplace.size() != 0) {
 			System.out.println("Камин горит");
 			if (lightState == LightCondition.DARK) lightState = LightCondition.LIGHT;
-			if (temperatureState == TemperatureCondition.COLD) temperatureState = TemperatureCondition.WARM;
 			for (int i = logsInFireplace.size() - 1; i >= 0; i--) {
 				if (!logsInFireplace.get(i).burn() && BurnCondition.AFTERBURN == logsInFireplace.get(i).getState()) {
 					logsAfterBurn.add(logsInFireplace.get(i));
@@ -73,7 +71,6 @@ public class Fireplace implements CanContainFire, DynamicObjects{
 		}
 		System.out.println("Камин не горит");
 		if (lightState == LightCondition.LIGHT) lightState = LightCondition.DARK;
-		if (temperatureState == TemperatureCondition.WARM) temperatureState = TemperatureCondition.COLD;
 		return false;
 	}
 
@@ -86,10 +83,6 @@ public class Fireplace implements CanContainFire, DynamicObjects{
 	
 	public LightCondition getLightState() {
 		return lightState;
-	}
-	
-	public TemperatureCondition getTemperatureState() {
-		return temperatureState;
 	}
 	
 	public String getMaterial() {
