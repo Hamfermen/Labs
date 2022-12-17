@@ -12,7 +12,6 @@ public class KeroseneLamp extends Lamp implements CanContainFire,DynamicObjects 
     private double size;
     private double emptySpace;
     private LightCondition lightState = LightCondition.DARK;
-    private TemperatureCondition temperatureState = TemperatureCondition.COLD;
 
     public KeroseneLamp(String material, double size) {
     	this("Kerosene Lamp", material, size);
@@ -63,7 +62,6 @@ public class KeroseneLamp extends Lamp implements CanContainFire,DynamicObjects 
 		if (fuelInFireplace.size() != 0) {
 			System.out.println("Керосиновая лампа горит");
 			if (lightState == LightCondition.DARK) lightState = LightCondition.LIGHT;
-			if (temperatureState == TemperatureCondition.COLD) temperatureState = TemperatureCondition.WARM;
 			for (int i = fuelInFireplace.size() - 1; i >= 0; i--) {
 				if (!fuelInFireplace.get(i).burn() && BurnCondition.AFTERBURN == fuelInFireplace.get(i).getState()) {
 					fuelAfterBurn.add(fuelInFireplace.get(i));
@@ -75,7 +73,6 @@ public class KeroseneLamp extends Lamp implements CanContainFire,DynamicObjects 
 		}
 		System.out.println("Керосиновая лампа не горит");
 		if (lightState == LightCondition.LIGHT) lightState = LightCondition.DARK;
-		if (temperatureState == TemperatureCondition.WARM) temperatureState = TemperatureCondition.COLD;
 		return false;
 	}
 
